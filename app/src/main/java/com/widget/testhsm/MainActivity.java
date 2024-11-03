@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     private Samek_9BContextObject contextObject = null;
     private Logger logger = new Logger();
     private Interceptor interceptor = new Interceptor();
+    ;
+    private boolean init = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,13 @@ public class MainActivity extends AppCompatActivity {
         TextView press = findViewById(R.id.press);
         press.setOnClickListener(v -> {
             Log.d(TAG,"done press");
-            initStateMachine();
+            if (!init) {
+                initStateMachine();
+                init = true;
+            }
+            else {
+                hsmStateMachine.dispatch(new QEvent(Samek_9BQHsmScheme.f));
+            }
         });
     }
 }

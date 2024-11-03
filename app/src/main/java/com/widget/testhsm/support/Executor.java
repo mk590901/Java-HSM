@@ -1,6 +1,5 @@
 package com.widget.testhsm.support;
 
-public interface Executor
-{
+public interface Executor {
 	boolean	Execute (int signal, int ticket);
 }
