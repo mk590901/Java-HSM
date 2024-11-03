@@ -14,8 +14,11 @@ import com.widget.testhsm.hsm.QEvent;
 import com.widget.testhsm.implementation.Samek_9BContextObject;
 import com.widget.testhsm.implementation.Samek_9BMediator;
 import com.widget.testhsm.implementation.Samek_9BQHsmScheme;
+import com.widget.testhsm.implementation.Samek_9BWrapper;
+import com.widget.testhsm.interfaces.IMediator;
 import com.widget.testhsm.support.Interceptor;
 import com.widget.testhsm.support.Logger;
+import com.widget.testhsm.support.ObjectEvent;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Samek_9BQHsmScheme hsmStateMachine = null;
     private Samek_9BMediator mediator = null;
     private Samek_9BContextObject contextObject = null;
+    private Samek_9BWrapper wrapper = null;
     private Logger logger = new Logger();
     private Interceptor interceptor = new Interceptor();
     ;
@@ -48,7 +52,11 @@ public class MainActivity extends AppCompatActivity {
         contextObject = new Samek_9BContextObject(logger);
         mediator = new Samek_9BMediator(contextObject, interceptor, logger);
         hsmStateMachine = new Samek_9BQHsmScheme(mediator, logger);
-        hsmStateMachine.init(new QEvent(Samek_9BQHsmScheme.INIT));
+        wrapper = new Samek_9BWrapper(hsmStateMachine, mediator);
+        //@hsmStateMachine.init(new QEvent(Samek_9BQHsmScheme.INIT));   //  Ok
+        //@wrapper.Init(); //  Ok
+        contextObject.Init();
+
     }
 
     private void setupLayout() {
@@ -60,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 init = true;
             }
             else {
-                hsmStateMachine.dispatch(new QEvent(Samek_9BQHsmScheme.f));
+                //@hsmStateMachine.dispatch(new QEvent(Samek_9BQHsmScheme.f));  // Ok
+                //@wrapper.Dispatch(new QEvent(Samek_9BQHsmScheme.f)); // Ok
+                contextObject.Done(new ObjectEvent(Samek_9BContextObject.f,'f'));
             }
         });
     }
