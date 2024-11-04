@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.widget.testhsm.hsm.QEvent;
 import com.widget.testhsm.implementation.Samek_9BContextObject;
@@ -20,11 +22,13 @@ import com.widget.testhsm.support.Interceptor;
 import com.widget.testhsm.support.Logger;
 import com.widget.testhsm.support.ObjectEvent;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     final String TAG = "hsm";
 
-    //private IMediator	mediator_ 	= null;
     private Samek_9BQHsmScheme hsmStateMachine = null;
     private Samek_9BMediator mediator = null;
     private Samek_9BContextObject contextObject = null;
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+        initStateMachine();
         setupLayout();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -74,5 +79,13 @@ public class MainActivity extends AppCompatActivity {
                 contextObject.Done(new ObjectEvent(Samek_9BContextObject.f,'f'));
             }
         });
+
+
+        RecyclerView horizontalRecyclerView = findViewById(R.id.horizontalRecyclerView);
+        horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        List<String> buttonTexts = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
+        ButtonAdapter buttonAdapter = new ButtonAdapter(buttonTexts, contextObject);
+        horizontalRecyclerView.setAdapter(buttonAdapter);
     }
 }

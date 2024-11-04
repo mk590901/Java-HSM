@@ -26,6 +26,7 @@ public class Samek_9BContextObject extends IObject {
 		mediator_ = null;
 		logger_	= logger;
 	}
+
 	@Override
 	public void Done(ObjectEvent signal) {
 		mediator_.ObjDone(signal.Event(), signal.Data());
@@ -46,6 +47,20 @@ public class Samek_9BContextObject extends IObject {
 		mediator_ = mediator;
 	}
 
+	public int getEventId(final String eventName) {
+		int result = 0;
+		switch(eventName) {
+			case "b": result = b; break;
+			case "a": result = a; break;
+			case "d": result = d; break;
+			case "h": result = h; break;
+			case "g": result = g; break;
+			case "e": result = e; break;
+			case "c": result = c; break;
+			case "f": result = f; break;
+		}
+		return result;
+	}
 
 	public boolean OnInit(Object data) {
 		boolean result = false;
