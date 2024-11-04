@@ -110,10 +110,10 @@ public class Samek_9BMediator extends IMediator {
 		if (command == null) {
 			Object data = interceptor_.GetTicket(ticket);
 			if (data == null) {
-				logger_.print(String.format("[%s] -- {%s}", state, DecodeSignal(signal)));
+				logger_.trace(String.format("[%s] -- {%s}", state, DecodeSignal(signal)));
 			}
 			else {
-				logger_.print(String.format("[%s] -- {%s} data->[%s]", state, DecodeSignal(signal), String.valueOf(data)));
+				logger_.trace(String.format("[%s] -- {%s} data->[%s]", state, DecodeSignal(signal), String.valueOf(data)));
 			}
 		}
 		else {

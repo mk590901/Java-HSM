@@ -9,8 +9,7 @@ public class Samek_9BWrapper extends IHsm
 	private IMediator mediator_ 	= null;
 	private Samek_9BQHsmScheme		entity_		= null;
 	
-	public Samek_9BWrapper(Samek_9BQHsmScheme entity, IMediator mediator)
-	{
+	public Samek_9BWrapper(Samek_9BQHsmScheme entity, IMediator mediator) {
 		entity_ 	= entity;
 		mediator_	= mediator;
 		mediator_.SetHsm(this);

@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private Samek_9BContextObject contextObject = null;
     private Samek_9BWrapper wrapper = null;
     private Logger logger = new Logger();
+    private Logger contextLogger = new Logger();
     private Interceptor interceptor = new Interceptor();
-    ;
+
     private boolean init = false;
 
     @Override
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initStateMachine() {
         Log.d(TAG,"initStateMachine");
-        contextObject = new Samek_9BContextObject(logger);
+        contextObject = new Samek_9BContextObject(contextLogger);
         mediator = new Samek_9BMediator(contextObject, interceptor, logger);
         hsmStateMachine = new Samek_9BQHsmScheme(mediator, logger);
         wrapper = new Samek_9BWrapper(hsmStateMachine, mediator);
