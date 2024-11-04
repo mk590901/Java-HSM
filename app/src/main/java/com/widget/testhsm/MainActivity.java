@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private void initStateMachine() {
         Log.d(TAG,"initStateMachine");
         contextObject = new Samek_9BContextObject(contextLogger);
-        mediator = new Samek_9BMediator(contextObject, interceptor, logger);
+        mediator = new Samek_9BMediator(contextObject, interceptor, /*logger*/contextLogger);
         hsmStateMachine = new Samek_9BQHsmScheme(mediator, logger);
         wrapper = new Samek_9BWrapper(hsmStateMachine, mediator);
         //@hsmStateMachine.init(new QEvent(Samek_9BQHsmScheme.INIT));   //  Ok

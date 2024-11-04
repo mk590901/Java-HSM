@@ -5,4 +5,5 @@ public interface ILogger {
 	String string  ();
 	String toTrace ();
 	void clear (final String label);
+	void printTrace();
 }

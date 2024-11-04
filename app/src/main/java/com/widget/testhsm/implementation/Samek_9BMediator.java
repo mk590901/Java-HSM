@@ -59,7 +59,9 @@ public class Samek_9BMediator extends IMediator {
 
 	@Override
 	public void Init() {
+			logger_.clear("[INIT]: ");
 		hsm_.Init();
+			logger_.printTrace();
 	}
 
 	@Override
@@ -72,7 +74,9 @@ public class Samek_9BMediator extends IMediator {
 		int hsmEvt = EventObj2Hsm(signal);
 		int	data	= interceptor_.PutTicket(objectData);
 		QEvent e	= new QEvent(hsmEvt, data);
+			logger_.clear(DecodeSignal(hsmEvt) + ": ");
 		hsm_.Dispatch(e);
+			logger_.printTrace();
 	}
 
 	public void SetInterceptor(Interceptor interceptor) {
@@ -110,10 +114,10 @@ public class Samek_9BMediator extends IMediator {
 		if (command == null) {
 			Object data = interceptor_.GetTicket(ticket);
 			if (data == null) {
-				logger_.trace(String.format("[%s] -- {%s}", state, DecodeSignal(signal)));
+				logger_.trace(String.format("%s-%s", state, DecodeSignal(signal)));
 			}
 			else {
-				logger_.trace(String.format("[%s] -- {%s} data->[%s]", state, DecodeSignal(signal), String.valueOf(data)));
+				logger_.trace(String.format("%s-%s[%s]", state, DecodeSignal(signal), String.valueOf(data)));
 			}
 		}
 		else {

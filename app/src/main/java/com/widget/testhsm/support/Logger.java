@@ -15,7 +15,7 @@ public class Logger implements ILogger {
     @Override
     public void trace(final String string) {
         _logger.add(string);
-        Log.d(TAG, string());
+        //Log.d(TAG, string());
         //Log.d(TAG, string);
     }
 
@@ -23,7 +23,7 @@ public class Logger implements ILogger {
     public String string() {
         String result = "";
         for (int i = 0; i < _logger.size(); i++) {
-            result += _logger.get(i) + ((i == (_logger.size() - 1)) ? "" : ";");
+            result += _logger.get(i) + ((i == (_logger.size() - 1) || (i == 0)) ? "" : ";");
         }
         return result;
     }
@@ -48,5 +48,8 @@ public class Logger implements ILogger {
         }
     }
 
-
+    @Override
+    public void printTrace() {
+        Log.d(TAG, string());
+    }
 }
