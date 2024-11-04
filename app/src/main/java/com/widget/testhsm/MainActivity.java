@@ -5,10 +5,12 @@ import android.util.Log;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -108,6 +110,22 @@ public class MainActivity extends AppCompatActivity {
         List<String> buttonTexts = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
         ButtonAdapter buttonAdapter = new ButtonAdapter(buttonTexts, contextObject);
         horizontalRecyclerView.setAdapter(buttonAdapter);
+
+
+        // Enable swipe-to-dismiss
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int position = viewHolder.getAdapterPosition();
+                stringAdapter.removeString(position);
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(verticalRecyclerView);
     }
 
     public void addStringToRecyclerView(String newString) {

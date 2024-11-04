@@ -39,6 +39,12 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.StringView
         notifyItemInserted(stringList.size() - 1);
     }
 
+    public void removeString(int position) {
+        stringList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, stringList.size());
+    }
+
     static class StringViewHolder extends RecyclerView.ViewHolder {
         TextView textView;
 
