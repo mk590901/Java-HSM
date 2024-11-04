@@ -12,16 +12,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.widget.testhsm.hsm.QEvent;
 import com.widget.testhsm.implementation.Samek_9BContextObject;
 import com.widget.testhsm.implementation.Samek_9BMediator;
 import com.widget.testhsm.implementation.Samek_9BQHsmScheme;
 import com.widget.testhsm.implementation.Samek_9BWrapper;
-import com.widget.testhsm.interfaces.IMediator;
+import com.widget.testhsm.support.GuiLogger;
 import com.widget.testhsm.support.Interceptor;
 import com.widget.testhsm.support.Logger;
 import com.widget.testhsm.support.ObjectEvent;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,8 +34,12 @@ public class MainActivity extends AppCompatActivity {
     private Samek_9BContextObject contextObject = null;
     private Samek_9BWrapper wrapper = null;
     private Logger logger = new Logger();
-    private Logger contextLogger = new Logger();
+    private GuiLogger contextLogger = new GuiLogger(this);
     private Interceptor interceptor = new Interceptor();
+
+    private StringAdapter stringAdapter;
+    RecyclerView verticalRecyclerView;
+    private List<String> stringList;
 
     private boolean init = false;
 
@@ -44,16 +48,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        initStateMachine();
+        createStateMachine();
         setupLayout();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        initStateMachine();
     }
 
-    private void initStateMachine() {
+    private void createStateMachine() {
         Log.d(TAG,"initStateMachine");
         contextObject = new Samek_9BContextObject(contextLogger);
         mediator = new Samek_9BMediator(contextObject, interceptor, /*logger*/contextLogger);
@@ -61,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
         wrapper = new Samek_9BWrapper(hsmStateMachine, mediator);
         //@hsmStateMachine.init(new QEvent(Samek_9BQHsmScheme.INIT));   //  Ok
         //@wrapper.Init(); //  Ok
-        contextObject.Init();
+        //@contextObject.Init();
 
+    }
+
+    private void initStateMachine() {
+        contextObject.Init();
     }
 
     private void setupLayout() {
@@ -70,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         press.setOnClickListener(v -> {
             Log.d(TAG,"done press");
             if (!init) {
-                initStateMachine();
+                createStateMachine();
                 init = true;
             }
             else {
@@ -80,6 +89,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        /*RecyclerView*/ verticalRecyclerView = findViewById(R.id.verticalRecyclerView);
+        verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+//        stringList = new ArrayList<>(Arrays.asList(
+//                "Item 1", "Item 2", "Item 3", "Item 4", "Item 5",
+//                "Item 6", "Item 7", "Item 8", "Item 9", "Item 10"
+//        ));
+
+        stringList = new ArrayList<>();
+
+        stringAdapter = new StringAdapter(stringList);
+        verticalRecyclerView.setAdapter(stringAdapter);
 
         RecyclerView horizontalRecyclerView = findViewById(R.id.horizontalRecyclerView);
         horizontalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
@@ -88,4 +109,10 @@ public class MainActivity extends AppCompatActivity {
         ButtonAdapter buttonAdapter = new ButtonAdapter(buttonTexts, contextObject);
         horizontalRecyclerView.setAdapter(buttonAdapter);
     }
+
+    public void addStringToRecyclerView(String newString) {
+        stringAdapter.addString(newString);
+        verticalRecyclerView.scrollToPosition(stringAdapter.getItemCount() - 1);
+    }
+
 }
