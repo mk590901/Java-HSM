@@ -4,7 +4,7 @@ import com.widget.testhsm.hsm.QEvent;
 import com.widget.testhsm.interfaces.IHsm;
 import com.widget.testhsm.interfaces.IMediator;
 
-public class Samek_9BWrapper extends IHsm {
+public class Samek_9BWrapper implements IHsm {
 	private IMediator mediator_;
 	private Samek_9BQHsmScheme entity_;
 
