@@ -1,4 +1,4 @@
-//	Class Samek_9BContextObject: file automatically generated at 2024-11-05 10:13:08
+//	Class Samek_9BContextObject: file automatically generated at 2024-11-05 12:53:42
 package com.widget.testhsm.implementation;
 import	com.widget.testhsm.interfaces.ILogger;
 import	com.widget.testhsm.interfaces.IMediator;
@@ -6,8 +6,8 @@ import	com.widget.testhsm.interfaces.IObject;
 import	com.widget.testhsm.support.ObjectEvent;
 
 public class Samek_9BContextObject extends IObject {
-	IMediator	mediator_ = null;
-	ILogger	logger_	= null;
+	IMediator	mediator_;
+	ILogger	logger_;
 
 	public	static	final	int	APP_START_ENUM	= 1;
 	public	static	final	int	INIT	= APP_START_ENUM;
