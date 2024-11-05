@@ -1,9 +1,9 @@
-//	Class Samek_9BContextObject: file automatically generated at 2024-10-30 14:48:54
+//	Class Samek_9BContextObject: file automatically generated at 2024-11-05 10:13:08
 package com.widget.testhsm.implementation;
-import com.widget.testhsm.interfaces.ILogger;
-import com.widget.testhsm.interfaces.IMediator;
-import com.widget.testhsm.interfaces.IObject;
-import com.widget.testhsm.support.ObjectEvent;
+import	com.widget.testhsm.interfaces.ILogger;
+import	com.widget.testhsm.interfaces.IMediator;
+import	com.widget.testhsm.interfaces.IObject;
+import	com.widget.testhsm.support.ObjectEvent;
 
 public class Samek_9BContextObject extends IObject {
 	IMediator	mediator_ = null;
@@ -26,7 +26,6 @@ public class Samek_9BContextObject extends IObject {
 		mediator_ = null;
 		logger_	= logger;
 	}
-
 	@Override
 	public void Done(ObjectEvent signal) {
 		mediator_.ObjDone(signal.Event(), signal.Data());
