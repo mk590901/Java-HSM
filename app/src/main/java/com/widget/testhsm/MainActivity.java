@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,19 +32,18 @@ public class MainActivity extends AppCompatActivity {
 
     final String TAG = "hsm";
 
-    private Samek_9BQHsmScheme hsmStateMachine = null;
-    private Samek_9BMediator mediator = null;
-    private Samek_9BContextObject contextObject = null;
-    private Samek_9BWrapper wrapper = null;
-    private Logger logger = new Logger();
-    private GuiLogger contextLogger = new GuiLogger(this);
-    private Interceptor interceptor = new Interceptor();
+    private Samek_9BQHsmScheme hsmStateMachine;
+    private Samek_9BMediator mediator;
+    private Samek_9BContextObject contextObject;
+    private Samek_9BWrapper wrapper;
+    private final Logger logger = new Logger();
+    private final GuiLogger contextLogger = new GuiLogger(this);
+    private final Interceptor interceptor = new Interceptor();
 
     private StringAdapter stringAdapter;
-    RecyclerView verticalRecyclerView;
-    private List<String> stringList;
+    private RecyclerView verticalRecyclerView;
 
-    private boolean init = false;
+    private final List<String> stringList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +63,9 @@ public class MainActivity extends AppCompatActivity {
     private void createStateMachine() {
         Log.d(TAG,"initStateMachine");
         contextObject = new Samek_9BContextObject(contextLogger);
-        mediator = new Samek_9BMediator(contextObject, interceptor, /*logger*/contextLogger);
+        mediator = new Samek_9BMediator(contextObject, interceptor, contextLogger);
         hsmStateMachine = new Samek_9BQHsmScheme(mediator, logger);
         wrapper = new Samek_9BWrapper(hsmStateMachine, mediator);
-        //@hsmStateMachine.init(new QEvent(Samek_9BQHsmScheme.INIT));   //  Ok
-        //@wrapper.Init(); //  Ok
-        //@contextObject.Init();
-
     }
 
     private void initStateMachine() {
@@ -77,24 +73,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupLayout() {
-        TextView press = findViewById(R.id.press);
-        press.setOnClickListener(v -> {
-            Log.d(TAG,"done press");
-            if (!init) {
-                createStateMachine();
-                init = true;
-            }
-            else {
-                //@hsmStateMachine.dispatch(new QEvent(Samek_9BQHsmScheme.f));  // Ok
-                //@wrapper.Dispatch(new QEvent(Samek_9BQHsmScheme.f)); // Ok
-                contextObject.done(new ObjectEvent(Samek_9BContextObject.f,'f'));
-            }
-        });
 
-        /*RecyclerView*/ verticalRecyclerView = findViewById(R.id.verticalRecyclerView);
+        verticalRecyclerView = findViewById(R.id.verticalRecyclerView);
         verticalRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        stringList = new ArrayList<>();
+        // Add dividers to the verticalRecyclerView
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+        verticalRecyclerView.addItemDecoration(dividerItemDecoration);
+
+        //stringList = new ArrayList<>();
 
         stringAdapter = new StringAdapter(stringList);
         verticalRecyclerView.setAdapter(stringAdapter);
@@ -105,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         List<String> buttonTexts = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H");
         ButtonAdapter buttonAdapter = new ButtonAdapter(buttonTexts, contextObject);
         horizontalRecyclerView.setAdapter(buttonAdapter);
-
 
         // Enable swipe-to-dismiss
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
