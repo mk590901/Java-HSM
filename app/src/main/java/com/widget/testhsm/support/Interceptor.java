@@ -8,11 +8,11 @@ public class Interceptor {
     private int counter_ = 0;
     private Hashtable<Integer, Object> container_ = new Hashtable<Integer, Object>();
 
-    public int PutTicket(Object object) {
+    public int putTicket(Object object) {
         int result = INVALID_TICKET;
         if (object == null)
             return result;
-        result = Generate();
+        result = generate();
         if (result == INVALID_TICKET)
             return result;
         if (container_.containsKey(result)) {
@@ -28,7 +28,7 @@ public class Interceptor {
         return result;
     }
 
-    public Object GetTicket(int ticket) {
+    public Object getTicket(int ticket) {
         Object result = null;
         if (!container_.containsKey(ticket))
             return result;
@@ -37,13 +37,13 @@ public class Interceptor {
         return result;
     }
 
-    private int Generate() {
+    private int generate() {
         if (counter_ == MAX_VALUE)
             counter_ = 0;
         return counter_++;
     }
 
-    public int Size() {
+    public int size() {
         return container_.size();
     }
 }
