@@ -1,11 +1,11 @@
 package com.widget.testhsm.interfaces;
 
 public interface IMediator {
-	IHsm 		Hsm			();
-	void 		SetHsm		(IHsm hsm);
-	void 		HsmDone		(String state, int signal, Object data);
-	void 		Init		();
-	void 		SetLogger	(ILogger logger);	//	4 debug
-	void 		Execute		(String state, int signal, int data);
-	void 		ObjDone		(int signal, Object data);
+	IHsm hsm		();
+	void setHsm		(IHsm hsm);
+	void hsmDone	(String state, int signal, Object data);
+	void init		();
+	void setLogger	(ILogger logger);	//	4 debug
+	void execute	(String state, int signal, int data);
+	void objDone	(int signal, Object data);
 }

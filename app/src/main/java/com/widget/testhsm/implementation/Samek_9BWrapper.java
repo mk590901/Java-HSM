@@ -11,7 +11,7 @@ public class Samek_9BWrapper implements IHsm {
 	public Samek_9BWrapper(Samek_9BQHsmScheme entity, IMediator mediator) {
 		entity_ = entity;
 		mediator_	= mediator;
-		mediator_.SetHsm(this);
+		mediator_.setHsm(this);
 	}
 	@Override
 	public IMediator mediator() { return mediator_; }

@@ -1,4 +1,4 @@
-//	Class Samek_9BContextObject: file automatically generated at 2024-11-06 10:11:57
+//	Class Samek_9BContextObject: file automatically generated at 2024-11-06 11:47:31
 package com.widget.testhsm.implementation;
 import	com.widget.testhsm.interfaces.ILogger;
 import	com.widget.testhsm.interfaces.IMediator;
@@ -28,12 +28,12 @@ public class Samek_9BContextObject implements IObject {
 	}
 	@Override
 	public void done(ObjectEvent signal) {
-		mediator_.ObjDone(signal.Event(), signal.Data());
+		mediator_.objDone(signal.Event(), signal.Data());
 	}
 
 	@Override
 	public void init() {
-		mediator_.Init();
+		mediator_.init();
 	}
 
 	@Override
