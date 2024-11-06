@@ -42,7 +42,7 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ButtonView
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "->[" + event + " = " + eventId + "]");
-                contextObject.Done(new ObjectEvent(eventId, event));
+                contextObject.done(new ObjectEvent(eventId, event));
             }
         });
     }

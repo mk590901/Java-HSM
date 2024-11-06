@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initStateMachine() {
-        contextObject.Init();
+        contextObject.init();
     }
 
     private void setupLayout() {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             else {
                 //@hsmStateMachine.dispatch(new QEvent(Samek_9BQHsmScheme.f));  // Ok
                 //@wrapper.Dispatch(new QEvent(Samek_9BQHsmScheme.f)); // Ok
-                contextObject.Done(new ObjectEvent(Samek_9BContextObject.f,'f'));
+                contextObject.done(new ObjectEvent(Samek_9BContextObject.f,'f'));
             }
         });
 
