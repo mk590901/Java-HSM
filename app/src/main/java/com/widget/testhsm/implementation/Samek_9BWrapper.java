@@ -14,17 +14,17 @@ public class Samek_9BWrapper implements IHsm {
 		mediator_.SetHsm(this);
 	}
 	@Override
-	public IMediator Mediator() { return mediator_; }
+	public IMediator mediator() { return mediator_; }
 
 	@Override
-	public void SetMediator(IMediator mediator) { mediator_ = mediator; }
+	public void setMediator(IMediator mediator) { mediator_ = mediator; }
 
 	@Override
-	public void Init() {
+	public void init() {
 		entity_.init(new QEvent(Samek_9BQHsmScheme.INIT));
 	}
 	@Override
-	public void Dispatch(QEvent event) {
+	public void dispatch(QEvent event) {
 		entity_.dispatch(event);
 	}
 }
