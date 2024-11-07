@@ -81,8 +81,6 @@ public class MainActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
         verticalRecyclerView.addItemDecoration(dividerItemDecoration);
 
-        //stringList = new ArrayList<>();
-
         stringAdapter = new StringAdapter(stringList);
         verticalRecyclerView.setAdapter(stringAdapter);
 
