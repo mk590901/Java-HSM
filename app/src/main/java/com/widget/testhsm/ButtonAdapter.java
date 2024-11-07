@@ -38,12 +38,9 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonAdapter.ButtonView
         final String event = text.toLowerCase();
         final int eventId = contextObject.getEventId(event);
         holder.button.setText(text);
-        holder.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "->[" + event + " = " + eventId + "]");
-                contextObject.done(new ObjectEvent(eventId, event));
-            }
+        holder.button.setOnClickListener(v -> {
+            Log.d(TAG, "->[" + event + " = " + eventId + "]");
+            contextObject.done(new ObjectEvent(eventId, event));
         });
     }
 
