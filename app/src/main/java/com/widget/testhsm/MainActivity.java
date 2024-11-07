@@ -2,7 +2,6 @@ package com.widget.testhsm;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -22,7 +21,6 @@ import com.widget.testhsm.implementation.Samek_9BWrapper;
 import com.widget.testhsm.support.GuiLogger;
 import com.widget.testhsm.support.Interceptor;
 import com.widget.testhsm.support.Logger;
-import com.widget.testhsm.support.ObjectEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,10 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     final String TAG = "hsm";
 
-    private Samek_9BQHsmScheme hsmStateMachine;
-    private Samek_9BMediator mediator;
     private Samek_9BContextObject contextObject;
-    private Samek_9BWrapper wrapper;
     private final Logger logger = new Logger();
     private final GuiLogger contextLogger = new GuiLogger(this);
     private final Interceptor interceptor = new Interceptor();
@@ -63,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
     private void createStateMachine() {
         Log.d(TAG,"initStateMachine");
         contextObject = new Samek_9BContextObject(contextLogger);
-        mediator = new Samek_9BMediator(contextObject, interceptor, contextLogger);
-        hsmStateMachine = new Samek_9BQHsmScheme(mediator, logger);
-        wrapper = new Samek_9BWrapper(hsmStateMachine, mediator);
+        Samek_9BMediator mediator = new Samek_9BMediator(contextObject, interceptor, contextLogger);
+        Samek_9BQHsmScheme hsmStateMachine = new Samek_9BQHsmScheme(mediator, logger);
+        new Samek_9BWrapper(hsmStateMachine, mediator);
     }
 
     private void initStateMachine() {
