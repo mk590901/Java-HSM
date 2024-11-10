@@ -26,6 +26,12 @@ These are three classes: _MainActivity_, _ButtonAdapter_ and _StringAdapter_, wh
 Android app is designed to demonstrate the transitions of the above HSM scheme (pay attention on __note__ reference) under the influence of events. The upper part of the application contains a dynamic list of QHsm transitions. The events list implemented as buttons list is located at the bottom of the screen. The application has minimal functional capabilities. It only demonstrates the connection and reflection of the processes inside __QHsm__ by the application widgets.
 
 ## Movie
+The movie consists of three parts:
+- Compilation of the HSM scheme by QHsm editor
+- Demonstration of generated classes
+- Execution of the Java application
+
+https://github.com/user-attachments/assets/78cccd15-10e2-48b1-a606-7ab5cf526e5a
 
 ## Conclusion
 Adding a Java compiler allows to extend the scope of QHsm approach in Java apps. Maybe additional compilers may be implemented in future.
