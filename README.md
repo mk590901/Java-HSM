@@ -20,10 +20,10 @@ Folder __interfaces__ contains a set of interfaces created for access to __QHsm_
 Folder __support__ contains auxiliary classes that provide implementation of the previously mentioned interfaces.
 
 ## Java app
-
+These are three classes: _MainActivity_, _ButtonAdapter_ and _StringAdapter_, which provide the functionality of the Android application as described in the __App overview__ section.
 
 ## App overview
-Android app is designed to demonstrate the transitions of the above HSM scheme (pay attention on Goal reference) under the influence of events. The upper part of the application contains a dynamic list of QHsm transitions. The events list implemented as buttons list is located at the bottom of the screen.
+Android app is designed to demonstrate the transitions of the above HSM scheme (pay attention on __note__ reference) under the influence of events. The upper part of the application contains a dynamic list of QHsm transitions. The events list implemented as buttons list is located at the bottom of the screen. The application has minimal functional capabilities. It only demonstrates the connection and reflection of the processes inside __QHsm__ by the application widgets.
 
 ## Movie
 
